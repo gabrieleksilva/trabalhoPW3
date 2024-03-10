@@ -1,6 +1,6 @@
 package br.edu.ifsp.carlao2005;
 
-import br.edu.ifsp.carlao2005.controller.CadastroDeAluno;
+import br.edu.ifsp.carlao2005.controller.GerenciarAluno;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,7 +13,7 @@ public class MenuPrincipal {
         Scanner leitorTeclado = new Scanner(System.in);
 
         int cont = 0;
-        do{
+        do {
             System.out.println("\n ** CADASTRO DE ALUNOS **");
             System.out.println("\n1. Cadastrar aluno");
             System.out.println("2. Excluir aluno");
@@ -23,37 +23,44 @@ public class MenuPrincipal {
             System.out.println("6. FIM");
             System.out.println("\n\nDigite um numero: ");
             cont = leitorTeclado.nextInt();
-            CadastroDeAluno cadastroDeAluno = new CadastroDeAluno();
-            switch(cont){
+            GerenciarAluno gerenciarAluno = new GerenciarAluno();
+            switch (cont) {
                 case 1:
-                    System.out.println("\nEntrou na opcao 1\n");
-
-                    cadastroDeAluno.cadastroAluno();
+                    System.out.println("CADASTRO DE ALUNO:\n");
+                    gerenciarAluno.cadastroAluno();
                     break;
                 case 2:
-                   // System.out.println("Digite o nome:");
-                   // String nome = leitorTeclado.nextLine();
-
+                    System.out.println("EXCLUIR ALUNO:\n");
+                    Scanner scanExc = new Scanner(System.in);
+                    System.out.println("Digite o nome para excluir");
+                    String excluir = scanExc.nextLine();
+                    gerenciarAluno.deleteAluno(excluir);
 
                     break;
                 case 3:
-                    System.out.println("\nEntrou na opcao 3\n");
-
+                    System.out.println("ALTERAR ALUNO:\n");
+                    Scanner scanAluno = new Scanner(System.in);
+                    System.out.println("Digite o nome");
+                    String aluno = scanAluno.nextLine();
+                    gerenciarAluno.atualizarAluno(aluno);
                     break;
                 case 4:
+                    System.out.println("CONSULTAR ALUNO:\n");
                     Scanner scan = new Scanner(System.in);
-                     System.out.println("Digite o nome");
-                     String nome = scan.nextLine();
-                    cadastroDeAluno.findByName(nome);
+                    System.out.println("Digite o nome");
+                    String nome = scan.nextLine();
+                    gerenciarAluno.findByName(nome);
                     break;
                 case 5:
                     System.out.println("\nEntrou na opcao 5\n");
+                    gerenciarAluno.findAlL();
                     break;
                 case 6:
                     System.out.println("\nSaindo...");
                     break;
 
-                default: System.out.println("Opcao invalida");
+                default:
+                    System.out.println("Opcao invalida");
             }
         }
 
