@@ -30,7 +30,7 @@ public class AlunoDao {
         em.createQuery(jpql).setParameter("n", nome).executeUpdate();
     }
 
-    public Aluno buscarUnicoPorNome(String nome)
+    public Aluno buscarPorUnicoNome(String nome)
             throws NoResultException {
         String jpql = "SELECT p FROM Aluno p WHERE p.nome = :n";
         return em.createQuery(jpql, Aluno.class)

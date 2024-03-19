@@ -27,14 +27,14 @@ public class MenuPrincipal {
             switch (cont) {
                 case 1:
                     System.out.println("CADASTRO DE ALUNO:\n");
-                    gerenciarAluno.cadastroAluno();
+                    gerenciarAluno.insert();
                     break;
                 case 2:
                     System.out.println("EXCLUIR ALUNO:\n");
                     Scanner scanExc = new Scanner(System.in);
                     System.out.println("Digite o nome para excluir");
                     String excluir = scanExc.nextLine();
-                    gerenciarAluno.deleteAluno(excluir);
+                    gerenciarAluno.deleteByName(excluir);
 
                     break;
                 case 3:
@@ -42,7 +42,7 @@ public class MenuPrincipal {
                     Scanner scanAluno = new Scanner(System.in);
                     System.out.println("Digite o nome");
                     String aluno = scanAluno.nextLine();
-                    gerenciarAluno.atualizarAluno(aluno);
+                    gerenciarAluno.updateByName(aluno);
                     break;
                 case 4:
                     System.out.println("CONSULTAR ALUNO:\n");

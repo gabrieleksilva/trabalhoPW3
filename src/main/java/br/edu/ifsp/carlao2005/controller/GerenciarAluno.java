@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 
 public class GerenciarAluno {
-    public void cadastroAluno() {
+    public void insert() {
 
         Scanner leitorTeclado = new Scanner(System.in);
         System.out.print("Digite o nome: ");
@@ -56,7 +56,7 @@ public class GerenciarAluno {
     public void findByName(String nome) throws NoResultException {
         EntityManager em = JPAUtil.getEntityManager();
         AlunoDao alunoDao = new AlunoDao(em);
-        Aluno al = alunoDao.buscarUnicoPorNome(nome);
+        Aluno al = alunoDao.buscarPorUnicoNome(nome);
         System.out.println("-----------------------");
         System.out.println(al.getNome());
         System.out.println(al.getEmail());
@@ -92,12 +92,12 @@ public class GerenciarAluno {
         }
     }
 
-    public void deleteAluno(String nome) {
+    public void deleteByName(String nome) {
 
         EntityManager em = JPAUtil.getEntityManager();
         AlunoDao alunoDao = new AlunoDao(em);
         try {
-            alunoDao.buscarUnicoPorNome(nome);
+            alunoDao.buscarPorUnicoNome(nome);
             em.getTransaction().begin();
             alunoDao.deletarAluno(nome);
             // Finalizando a transação:
@@ -111,12 +111,12 @@ public class GerenciarAluno {
         }
     }
 
-    public void atualizarAluno(String nome) {
+    public void updateByName(String nome) {
         EntityManager em = JPAUtil.getEntityManager();
         AlunoDao alunoDao = new AlunoDao(em);
         try {
             findByName(nome);
-            Aluno aluno = alunoDao.buscarUnicoPorNome(nome);
+            Aluno aluno = alunoDao.buscarPorUnicoNome(nome);
             Scanner leitor = new Scanner(System.in);
             System.out.print("Digite o nome: ");
             String name = leitor.nextLine();
